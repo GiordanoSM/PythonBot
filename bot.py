@@ -40,7 +40,7 @@ async def on_member_join(member):
 async def on_member_remove(member):
     print(f'{member} has left the server.')
 
-@bot.command(aliases=['pf'])
+@bot.command(aliases=['pf'], brief = 'Pode mudar o prefixo.')
 async def change_prefix(ctx, prefix):
     with open('prefixes.json', 'r') as f: #le do arquivo
         prefixes = json.load(f)
@@ -52,15 +52,15 @@ async def change_prefix(ctx, prefix):
 
     await ctx.send(f'Prefix changed to: {prefix}')
 
-@bot.command()
+@bot.command(hidden=True)
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}') #cogs=nome da pasta
 
-@bot.command()
+@bot.command(hidden=True)
 async def unload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}') #cogs=nome da pasta
 
-@bot.command()
+@bot.command(hidden=True)
 async def reload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}') #cogs=nome da pasta
     bot.load_extension(f'cogs.{extension}') #cogs=nome da pasta
